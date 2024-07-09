@@ -1,0 +1,27 @@
+.noSolution{
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noSolution div{
+    background-color: rgb(231, 229, 229);
+    height: 200px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 10px solid rgb(186, 184, 184);
+    border-bottom: 10px solid rgb(182, 179, 179);
+}
+
+.noSolution h2{
+    color: rgb(232, 138, 37);
+    font-size: 40px;
+}
+
+#container div{
+    margin-top: 30px;
+}
+

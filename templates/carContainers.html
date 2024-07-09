@@ -1,0 +1,292 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Containers</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'carContainers.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- <link rel="stylesheet" href="searchBar.css"> -->
+    <!-- <script src="searchBar.js"></script> -->
+    <style>
+        body {
+            font-family: "Poppins", Arial, sans-serif;
+        }
+
+        nav {
+            background-color: rgb(219, 125, 23);
+            padding: 0.5%;
+        }
+
+        nav h1 {
+            color: white;
+        }
+
+        .title, .titleComb {
+            background-color: rgb(231, 229, 229);
+            text-align: center;
+            padding: 10px 0px;
+        }
+
+        .title, .titleComb h2 {
+            color: rgb(219, 125, 23);
+        }
+
+        form button {
+            margin-left: 5px;
+            height: 1.6em;
+            width: 35px;
+            border-color: DodgerBlue;
+            border-radius: 20%;
+            background-color: DodgerBlue;
+            color: white;
+            font-weight: 700;
+            font-size: x-large;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .addedCars th {
+            background-color: rgb(232, 138, 37);
+            color: white;
+        }
+
+        .addedCars table tr {
+            color: black;
+            height: 50px;
+        }
+
+        .addedCars th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #DDD;
+        }
+
+        .addedCars tr:nth-child(even) {
+            background-color: rgb(250, 224, 197);
+        }
+
+        .addedCars tr:hover {
+            background-color: #D6EEEE;
+        }
+
+
+
+        .submitButton {
+            padding-right: 20px;
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: end;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font: 16px Arial;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin: 15px;
+        }
+
+        .autocomplete {
+            /*the container must be positioned relative:*/
+            position: relative;
+            display: inline-block;
+        }
+
+        input {
+            border: 1px solid transparent;
+            background-color: #f1f1f1;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        input[type=text] {
+            background-color: #f1f1f1;
+            width: 100%;
+        }
+
+        input[type=submit] {
+            background-color: DodgerBlue;
+            color: #fff;
+        }
+
+
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            /*position the autocomplete items to be the same width as the container:*/
+            top: 100%;
+            left: 0;
+            right: 0;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #fff;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        .autocomplete-items div:hover {
+            /*when hovering an item:*/
+            background-color: #e9e9e9;
+        }
+
+        .autocomplete-active {
+            /*when navigating through the items using the arrow keys:*/
+            background-color: DodgerBlue !important;
+            color: #ffffff;
+        }
+
+        /* #container div h2{
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            background-color: yellow;
+            
+        } */
+    </style>
+</head>
+
+
+<body>
+    <nav>
+        <h1>CAR CONTAINERS</h1>
+    </nav>
+
+    <div class="main">
+        <div class="title">
+            <h2>Add Cars to Ship</h2>
+        </div>
+
+
+        <form autocomplete="off" action="">
+            <div class="autocomplete" style="width:300px;">
+                <input id="myInput" type="text" placeholder="Search">
+            </div>
+            <button><span class="addIcon" id="addIcon">+</span></button>
+        </form>
+
+
+        <div class="addedCars">
+            <table width="50%" id="addedCars1">
+                <tr>
+                    <th width="3%">#</th>
+                    <th width="25%">Make</th>
+                    <th width="25%">Model</th>
+                    <th width="25%"></th>
+                </tr>
+            </table>
+
+        </div>
+
+        <div class="submitButton">
+            <button type="button" class="btn btn-warning submitCar">SUBMIT</button>
+        </div>
+
+        <div class="titleComb">
+            <!-- <h2>Car Combinations</h2> -->
+        </div>
+
+        <div id="container"></div>
+
+        <!-- <div class="submitButton">
+            <button type="button" class="btn btn-info">PRINT</button>
+        </div> -->
+
+        <script>
+            let data = {{ allCars| safe }}
+            let Cars = []
+
+            for (let i = 0; i < data.length; i++) {
+                Cars.push(data[i].MAKE + " " + data[i].Model)
+            }
+
+            addedCars = []
+
+            document.querySelector('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+            })
+
+            function addCars() {
+                let carTable = document.getElementById('addedCars1');
+                let rowCount = carTable.rows.length;
+
+                for (let i = rowCount - 1; i > 0; i--) {
+                    carTable.deleteRow(i)
+                }
+                for (let i = 0; i < addedCars.length; i++) {
+                    let newRow = carTable.insertRow(i + 1);
+                    let newCell1 = newRow.insertCell(0);
+                    let newCell2 = newRow.insertCell(1);
+                    let newCell3 = newRow.insertCell(2);
+                    let newCell4 = newRow.insertCell(3);
+                    let carName = addedCars[i].split(" ")
+                    newCell1.innerHTML = `<strong>${i + 1}.<strong>`;
+                    newCell2.innerHTML = `<strong>${carName[0]}<strong>`;
+                    newCell3.innerHTML = `<strong>${carName[1]}<strong>`;
+                    newCell4.innerHTML = `<button onclick="removeRow(this, '${addedCars[i]}')" class="btn btn-danger btn-sm removeCar"><i class="fa-solid fa-trash"></i></button>`
+                }
+
+
+            }
+
+            document.getElementById('addIcon').addEventListener('click', function (e) {
+                e.preventDefault()
+                let car = document.getElementById('myInput').value;
+
+                addedCars.push(car)
+                addCars();
+                console.log(addedCars)
+                console.log("CLicked")
+            });
+
+            function removeFirstOccurrence(array, stringToRemove) {
+                var index = array.indexOf(stringToRemove);
+                if (index > -1) {
+                    array.splice(index, 1);
+                }
+                return array;
+            }
+
+            function removeRow(button, car) {
+                var row = button.parentNode.parentNode;
+                addedCars = removeFirstOccurrence(addedCars, car)
+                row.parentNode.removeChild(row);
+                addCars()
+            }
+
+        </script>
+
+        <script src="{% static 'searchBar.js' %}"></script>
+
+        <script src="{% static 'containerCombinations.js' %}"></script>
+
+</body>
+
+</html>
