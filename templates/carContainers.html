@@ -85,8 +85,6 @@
             background-color: #D6EEEE;
         }
 
-
-
         .submitButton {
             padding-right: 20px;
             padding-bottom: 20px;
@@ -131,8 +129,6 @@
             color: #fff;
         }
 
-
-
         .autocomplete-items {
             position: absolute;
             border: 1px solid #d4d4d4;
@@ -163,13 +159,6 @@
             color: #ffffff;
         }
 
-        /* #container div h2{
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            background-color: yellow;
-            
-        } */
     </style>
 </head>
 
@@ -209,9 +198,6 @@
             <button type="button" class="btn btn-warning submitCar">SUBMIT</button>
         </div>
 
-        <div class="titleComb">
-            <!-- <h2>Car Combinations</h2> -->
-        </div>
 
         <div id="container"></div>
 
@@ -258,7 +244,7 @@
 
             document.getElementById('addIcon').addEventListener('click', function (e) {
                 e.preventDefault()
-                let car = document.getElementById('myInput').value;
+                let car = document.getElementById('myInput').value.trim();
 
                 addedCars.push(car)
                 addCars();

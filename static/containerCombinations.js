@@ -29,20 +29,18 @@ document.querySelector('.submitCar').addEventListener('click', function () {
 })
 
 function renderTable(answer) {
-    const title = document.querySelector('.titleComb')
-    title.innerHTML = ''
-    
-    if (title) {
-        console.log("hahs")
+    const containerDiv = document.getElementById('container');
+    containerDiv.innerHTML = '';
+
+    const title = document.createElement('div')
+    title.classList.add('titleComb')
+
+    if(!document.querySelector('.titleComb')){
         const titleText = document.createElement("h2");
         titleText.innerHTML = 'Car Combinations';
         title.appendChild(titleText);
-    } else {
-        console.error('Element with class "title" not found');
+        containerDiv.parentNode.insertBefore(title, containerDiv)
     }
-    const containerDiv = document.getElementById('container');
-    containerDiv.innerHTML = ''; 
-    
 
     if(answer !== 0){
         if(document.querySelector('.noSolution')){
