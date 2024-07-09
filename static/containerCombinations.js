@@ -59,11 +59,11 @@ function renderTable(answer) {
             const thead = document.createElement('thead');
             thead.innerHTML = `
                 <tr class="table-secondary">
-                    <th scope="col">S.No.</th>
-                    <th scope="col">Containers</th>
-                    <th scope="col">No. of Cars</th>
-                    <th scope="col">Vanning Date</th>
-                    <th scope="col">Yard</th>
+                    <th scope="col" width="3%">S.No.</th>
+                    <th scope="col" width="57%">Containers</th>
+                    <th scope="col" width="15%">No. of Cars</th>
+                    <th scope="col" width="15%">Vanning Date</th>
+                    <th scope="col" width="10%">Yard</th>
                 </tr>
             `;
             table.appendChild(thead);
